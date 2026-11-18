@@ -48,7 +48,7 @@ export default function RegisterPage() {
   };
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-[radial-gradient(circle_at_top,_#0a3f34_0%,_#023020_35%,_#12070d_100%)] p-4 text-white">
+    <div className="flex min-h-screen items-center justify-center bg-[radial-gradient(circle_at_top,_#0a3f34_0%,_#023020_35%,_#12070d_100%)] p-4 font-sans text-white">
       <Card className="w-full max-w-md border border-white/10 bg-[#0a2f29]/85 text-white shadow-2xl shadow-emerald-950/35 backdrop-blur-sm">
         <CardHeader className="space-y-2">
           <CardTitle className="text-3xl font-bold tracking-tight text-white">Create Account</CardTitle>

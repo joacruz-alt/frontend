@@ -10,6 +10,20 @@ export const getAccessToken = (): string | null => {
   return token;
 };
 
+export const getUserId = (): number | null => {
+  const token = getAccessToken();
+  if (!token) return null;
+
+  try {
+    const payloadBase64 = token.split(".")[1];
+    const decodedPayload = JSON.parse(atob(payloadBase64));
+    const userId = decodedPayload.sub ?? decodedPayload.id ?? decodedPayload.userId;
+    return userId ? Number(userId) : null;
+  } catch {
+    return null;
+  }
+};
+
 export const setTokens = (accessToken?: string, refreshToken?: string): void => {
   if (typeof window === "undefined") return;
 
@@ -28,12 +42,10 @@ export const setTokens = (accessToken?: string, refreshToken?: string): void => 
 
 export const clearTokens = (): void => {
   if (typeof window === "undefined") return;
-
   localStorage.removeItem(CONFIG.STORAGE_KEYS.ACCESS_TOKEN);
   localStorage.removeItem(CONFIG.STORAGE_KEYS.REFRESH_TOKEN);
 };
 
 export const isAuthenticated = (): boolean => {
-  if (typeof window === "undefined") return false;
   return !!getAccessToken();
 };
